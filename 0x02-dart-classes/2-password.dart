@@ -8,9 +8,9 @@ class Password {
     }
 
     // Vérifier la présence de majuscules, minuscules, chiffres, caractère spécial, longueur du MDP
-    bool hasUpper = password.contains(RegExp(r'[A-Z]'));
-    bool hasLower = password.contains(RegExp(r'[a-z]'));
-    bool hasDigit = password.contains(RegExp(r'\d'));
+    bool hasUppercase = password.contains(RegExp(r'[A-Z]'));
+    bool hasLowercase = password.contains(RegExp(r'[a-z]'));
+    bool hasNumbers = password.contains(RegExp(r'\d'));
     bool lengthValid = password.length >= 8 && password.length <= 16;
 
     return hasUpper && hasLower && hasDigit && lengthValid;
