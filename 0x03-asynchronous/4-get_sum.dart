@@ -3,26 +3,25 @@ import '4-util.dart';
 
 Future<double> calculateTotal() async {
   try {
-    // Récupérer les données de l'utilisateur
-    final String userData = await fetchUserData();
-    final Map<String, dynamic> user = jsonDecode(userData);
-    final String userId = user['id'];
+    // Récupère les données de l'utilisateur
+    String user = await fetchUserData();
+    Map<String, dynamic> userData = jsonDecode(user);
+    String id = userData['id'];
 
-    // Récupérer les commandes de l'utilisateur
-    final String ordersData = await fetchUserOrders(userId);
-    final List<dynamic> orders = jsonDecode(ordersData);
+    // Récupère les commandes de l'utilisateur
+    String orders = await fetchUserOrders(id);
+    List<dynamic> userOrders = jsonDecode(orders);
 
     double total = 0;
 
-    // Parcourir chaque produit et additionner les prix
-    for (final product in orders) {
-      final String priceData = await fetchProductPrice(product);
-      final dynamic price = jsonDecode(priceData);
-      total += price;
+    // Calcule le prix total
+    for (int i = 0; i < userOrders.length; i++) {
+      String price = await fetchProductPrice(userOrders[i]);
+      total += jsonDecode(price);
     }
 
     return total;
-  } catch (e) {
+  } catch (error) {
     return -1;
   }
 }
