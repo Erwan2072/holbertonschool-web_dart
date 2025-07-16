@@ -5,6 +5,6 @@ Future<void> getUser() async {
     final String user = await fetchUser();
     print('User: $user');
   } catch (e) {
-    print('Error: $e');
+    print('Error caught: $e');
   }
 }
